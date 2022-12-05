@@ -1,0 +1,12 @@
+[submodule "opentx"]
+	path = opentx
+	url = git@github.com:JunOllyLi/opentx.git
+	branch = feather_2.3
+[submodule "boards/feather_esp32v2"]
+	path = boards/feather_esp32v2
+	url = git@github.com:JunOllyLi/makeEspArduino.git
+	branch = feather
+[submodule "boards/feather_stm32f405"]
+	path = boards/feather_stm32f405
+	url = git@github.com:JunOllyLi/arduino-commandliners.git
+	branch = feather_stm32f405

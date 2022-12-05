@@ -1,0 +1,4 @@
+{
+	"cmake.sourceDirectory": "${workspaceFolder}/opentx/companion/src/thirdparty/miniz",
+	"C_Cpp.default.defines": ["RTOS_FREERTOS"]
+}
