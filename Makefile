@@ -9,7 +9,7 @@ BSP_BUILD_DIR = ${BUILD_DIR}/arduino_freertos_bsp
 
 BSP_LIB = ${BSP_BUILD_DIR}/arduino.ar
 
-.PHONY: firmware
+.PHONY: firmware flash clean bsp_lib
 firmware: ${OPENTX_BUILD_DIR}/CMakeCache.txt ${BSP_LIB}
 	cd ${OPENTX_BUILD_DIR} && make firmware
 	make -C ${BSP_DIR} BUILD_DIR=${BSP_BUILD_DIR} firmware
@@ -17,6 +17,8 @@ firmware: ${OPENTX_BUILD_DIR}/CMakeCache.txt ${BSP_LIB}
 ${BSP_LIB}: ${BUILD_DIR}/toolchain.cmake
 	mkdir -p ${BSP_BUILD_DIR}
 	make -C ${BSP_DIR} BUILD_DIR=${BSP_BUILD_DIR} all
+
+bsp_lib: ${BSP_LIB}
 
 ${BUILD_DIR}/toolchain.cmake:
 	mkdir -p ${BUILD_DIR}
