@@ -1,13 +1,21 @@
 TOP_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 OPENTX_SRCDIR = ${TOP_DIR}/opentx
-BSP_DIR = ${TOP_DIR}/boards/feather_esp32v2
+
+BSP ?= FEATHER_STM32F405
+
 BUILD_DIR = ${TOP_DIR}/build
 OPENTX_BUILD_DIR = ${BUILD_DIR}/opentx
 OPENTX_LIB_DIR = ${OPENTX_BUILD_DIR}/radio/src
 OPENTX_LIB = ${OPENTX_LIB_DIR}/libfirmware.a
 BSP_BUILD_DIR = ${BUILD_DIR}/arduino_freertos_bsp
 
-BSP_LIB = ${BSP_BUILD_DIR}/arduino.ar
+ifeq ($(BSP),FEATHER_STM32F405)
+  BSP_DIR = ${TOP_DIR}/boards/feather_stm32f405
+  BSP_LIB = ${BSP_BUILD_DIR}/libcore.a
+else
+  BSP_DIR = ${TOP_DIR}/boards/feather_esp32v2
+  BSP_LIB = ${BSP_BUILD_DIR}/arduino.ar
+endif
 
 .PHONY: firmware flash clean bsp_lib
 firmware: ${OPENTX_BUILD_DIR}/CMakeCache.txt ${BSP_LIB}
@@ -26,7 +34,7 @@ ${BUILD_DIR}/toolchain.cmake:
 
 ${OPENTX_BUILD_DIR}/CMakeCache.txt: ${BSP_LIB}
 	@mkdir -p ${OPENTX_BUILD_DIR}
-	cd ${OPENTX_BUILD_DIR} && cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=${BUILD_DIR}/toolchain.cmake -DPCB=FEATHER_STM32 -DDISABLE_COMPANION=YES -DGVARS=YES -DLUA=YES -DDEBUG=YES -DCMAKE_BUILD_TYPE=Debug ${OPENTX_SRCDIR}
+	cd ${OPENTX_BUILD_DIR} && cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=${BUILD_DIR}/toolchain.cmake -DDISABLE_COMPANION=YES -DGVARS=YES -DLUA=YES -DDEBUG=YES -DCMAKE_BUILD_TYPE=Debug ${OPENTX_SRCDIR}
 	touch $@
 
 flash:

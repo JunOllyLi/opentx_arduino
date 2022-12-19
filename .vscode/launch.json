@@ -7,7 +7,7 @@
 		{
 			"name": "Feather STM32 Debug",
 			"cwd": "${workspaceFolder}",
-			"executable": "${workspaceFolder}/arduino/uploadimg.elf",
+			"executable": "${workspaceFolder}/build/arduino_freertos_bsp/opentx.elf",
 			"request": "launch",
 			"type": "cortex-debug",
 			"servertype": "openocd",
