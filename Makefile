@@ -1,7 +1,7 @@
 TOP_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 OPENTX_SRCDIR = ${TOP_DIR}/opentx
 
-BSP ?= FEATHER_STM32F405
+BSP ?= ESP32V2
 
 BUILD_DIR = ${TOP_DIR}/build
 OPENTX_BUILD_DIR = ${BUILD_DIR}/opentx
@@ -9,12 +9,12 @@ OPENTX_LIB_DIR = ${OPENTX_BUILD_DIR}/radio/src
 OPENTX_LIB = ${OPENTX_LIB_DIR}/libfirmware.a
 BSP_BUILD_DIR = ${BUILD_DIR}/arduino_freertos_bsp
 
-ifeq ($(BSP),FEATHER_STM32F405)
-  BSP_DIR = ${TOP_DIR}/boards/feather_stm32f405
-  BSP_LIB = ${BSP_BUILD_DIR}/libcore.a
-else
+ifeq ($(BSP),ESP32V2)
   BSP_DIR = ${TOP_DIR}/boards/feather_esp32v2
   BSP_LIB = ${BSP_BUILD_DIR}/arduino.ar
+else
+  BSP_DIR = ${TOP_DIR}/boards/feather_stm32f405
+  BSP_LIB = ${BSP_BUILD_DIR}/libcore.a
 endif
 
 .PHONY: firmware flash clean bsp_lib
