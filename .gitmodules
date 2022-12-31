@@ -10,3 +10,6 @@
 	path = boards/feather_stm32f405
 	url = git@github.com:JunOllyLi/arduino-commandliners.git
 	branch = feather_stm32f405
+[submodule "edgetx"]
+	path = edgetx
+	url = git@github.com:JunOllyLi/edgetx.git

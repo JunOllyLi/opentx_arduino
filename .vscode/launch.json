@@ -5,6 +5,18 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "ESP32",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/build/arduino_freertos_bsp/opentx.elf",
+			"cwd": "${workspaceFolder}",
+			"MIMode": "gdb",
+			"stopAtEntry": true,
+			"stopAtConnect": true,
+			"miDebuggerServerAddress": "192.168.100.44:3333",
+			"miDebuggerPath": "/home/junl/.arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/gcc8_4_0-esp-2021r2-patch3/bin/xtensa-esp32-elf-gdb"
+		},
+		{
 			"name": "Feather STM32 Debug",
 			"cwd": "${workspaceFolder}",
 			"executable": "${workspaceFolder}/build/arduino_freertos_bsp/opentx.elf",

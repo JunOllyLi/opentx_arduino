@@ -1,5 +1,5 @@
 TOP_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
-OPENTX_SRCDIR = ${TOP_DIR}/opentx
+OPENTX_SRCDIR = ${TOP_DIR}/edgetx
 
 BSP ?= ESP32V2
 
@@ -19,7 +19,7 @@ endif
 
 .PHONY: firmware flash clean bsp_lib
 firmware: ${OPENTX_BUILD_DIR}/CMakeCache.txt ${BSP_LIB}
-	cd ${OPENTX_BUILD_DIR} && make firmware
+	cd ${OPENTX_BUILD_DIR} && make tx_firmware
 	make -C ${BSP_DIR} BUILD_DIR=${BSP_BUILD_DIR} firmware
 
 ${BSP_LIB}: ${BUILD_DIR}/toolchain.cmake
